@@ -1,32 +1,50 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <v-header/>
+    <keep-alive>
+      <main>
+        <transition name="fade">
+          <router-view/>
+        </transition>
+      </main>
+    </keep-alive>
+    <v-footer/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  import vHeader from "@/components/Header/v-header";
+  import vFooter from "@/components/Footer/v-footer";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  export default {
+    name: "app",
+    components: {
+      vFooter,
+      vHeader
     }
   }
-}
+</script>
+
+<style lang="scss" scoped>
+  #app {
+    font-family: $mainFont;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: 0.25s;
+  }
+
+  .fade-enter-active {
+    transition-delay: 0.25s;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0;
+  }
 </style>
