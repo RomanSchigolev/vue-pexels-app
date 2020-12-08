@@ -1,13 +1,15 @@
 <template>
-  <h1>photo</h1>
+  <vGallery />
 </template>
 
 <script>
-  export default {
-    name: "v-photo"
-  }
+import vGallery from "@/components/Photos/v-gallery";
+
+export default {
+  name: "v-photo",
+  components: { vGallery },
+};
 </script>
 
-<style scoped>
-
+<style>
 </style>
