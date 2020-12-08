@@ -3,11 +3,10 @@
 </template>
 
 <script>
-  export default {
-    name: "v-video"
-  }
+export default {
+  name: "v-video",
+};
 </script>
 
-<style scoped>
-
+<style>
 </style>
