@@ -50,184 +50,184 @@
   </section>
 </template>
 <script>
-export default {
-  name: "v-gallery",
-};
+  export default {
+    name: "v-gallery",
+  };
 </script>
 <style lang="scss" scoped>
-.gallery {
-  &__header {
-    display: flex;
-    flex-direction: column;
-  }
+  .gallery {
+    &__header {
+      display: flex;
+      flex-direction: column;
+    }
 
-  &__logo {
-    display: inline-block;
-    font-size: 10vmin;
-    font-weight: 900;
-    letter-spacing: -1px;
-    text-decoration: none;
-    color: $secondColor;
-  }
+    &__logo {
+      display: inline-block;
+      font-size: 10vmin;
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-decoration: none;
+      color: $secondColor;
+    }
 
-  &__list {
-    display: grid;
-    grid-gap: 2vmax;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    margin: 4vmax 0;
-  }
+    &__list {
+      display: grid;
+      grid-gap: 2vmax;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin: 4vmax 0;
+    }
 
-  &__item {
-    position: relative;
-    width: 100%;
-    height: 380px;
-    overflow: hidden;
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease;
+    &__item {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      border-radius: 8px;
+      transition: box-shadow 0.3s ease;
 
-    &:hover {
-      box-shadow: 0 0 5px 2px #645f5f;
+      &:hover {
+        box-shadow: 0 0 5px 2px #645f5f;
 
-      & .gallery__author {
-        transform: translateY(0);
+        & .gallery__author {
+          transform: translateY(0);
+        }
+      }
+
+      &:hover .gallery__img {
+        transform: scale(1.1);
       }
     }
 
-    &:hover .gallery__img {
-      transform: scale(1.1);
-    }
-  }
-
-  &__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-    will-change: transform;
-  }
-
-  &__author {
-    position: absolute;
-    width: 100%;
-    padding: 20px;
-    bottom: 0;
-    background-color: #00000057;
-    color: #ffffff;
-    font-weight: 300;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
-  }
-
-  &__msg {
-    margin-top: 4vmax;
-    text-align: center;
-
-    & span {
-      font-size: 2vmax;
-      font-weight: 500;
-    }
-  }
-
-  &__footer {
-    justify-content: center;
-  }
-
-  &__btn {
-    padding: 1.2vmax 1.2vmax;
-    text-transform: uppercase;
-    background-color: $secondColor;
-    border-radius: 3px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    transition: background-color 0.4s ease;
-
-    &:hover,
-    &:focus {
-      background-color: $accentColor;
-    }
-  }
-
-  &__preloader {
-    width: 140px;
-    height: 140px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: all 0.5s ease-in-out;
-    max-width: 100%;
-    z-index: 103;
-
-    &--active {
-      transform: translate(-50%, -50%) scale(1);
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      will-change: transform;
     }
 
-    &:after {
-      content: " ";
+    &__author {
       position: absolute;
-      display: block;
-      width: 124px;
-      height: 124px;
-      border-radius: 50%;
-      border: 6px solid $accentColor;
-      border-color: $accentColor transparent $accentColor transparent;
-      animation: gallery__preloader 1.2s linear infinite;
+      width: 100%;
+      padding: 20px;
+      bottom: 0;
+      background-color: #00000057;
+      color: #ffffff;
+      font-weight: 300;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    &__msg {
+      margin-top: 4vmax;
+      text-align: center;
+
+      & span {
+        font-size: 2vmax;
+        font-weight: 500;
+      }
+    }
+
+    &__footer {
+      justify-content: center;
+    }
+
+    &__btn {
+      padding: 1.2vmax 1.2vmax;
+      text-transform: uppercase;
+      background-color: $secondColor;
+      border-radius: 3px;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      transition: background-color 0.4s ease;
+
+      &:hover,
+      &:focus {
+        background-color: $accentColor;
+      }
+    }
+
+    &__preloader {
+      width: 140px;
+      height: 140px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: all 0.5s ease-in-out;
+      max-width: 100%;
+      z-index: 103;
+
+      &--active {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      &:after {
+        content: " ";
+        position: absolute;
+        display: block;
+        width: 124px;
+        height: 124px;
+        border-radius: 50%;
+        border: 6px solid $accentColor;
+        border-color: $accentColor transparent $accentColor transparent;
+        animation: gallery__preloader 1.2s linear infinite;
+      }
+    }
+
+    &__overlay {
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.9);
+      pointer-events: none;
+      transition: all 0.5s ease-in-out;
+
+      &--active {
+        opacity: 1;
+        pointer-events: all;
+        z-index: 102;
+      }
     }
   }
 
-  &__overlay {
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.9);
-    pointer-events: none;
-    transition: all 0.5s ease-in-out;
-
-    &--active {
-      opacity: 1;
-      pointer-events: all;
-      z-index: 102;
+  @keyframes gallery__preloader {
+    0% {
+      transform: rotate(0deg);
     }
-  }
-}
-
-@keyframes gallery__preloader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.form {
-  display: flex;
-  margin-top: 1.4vmax;
-  max-width: 300px;
-
-  &__textfield {
-    width: 100%;
-    border-bottom: 1px solid #b3b3b3;
-    color: #b3b3b3;
-    padding: 0 0.5vmax;
-    margin-right: 1vmax;
-    font-size: 15px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    transition: border-bottom-color 0.3s ease;
-
-    &:focus {
-      border-bottom-color: #3d3d3d;
+    100% {
+      transform: rotate(360deg);
     }
   }
 
-  &__submit svg {
-    width: 18px;
+  .form {
+    display: flex;
+    margin-top: 1.4vmax;
+    max-width: 300px;
+
+    &__textfield {
+      width: 100%;
+      border-bottom: 1px solid #b3b3b3;
+      color: #b3b3b3;
+      padding: 0 0.5vmax;
+      margin-right: 1vmax;
+      font-size: 15px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      transition: border-bottom-color 0.3s ease;
+
+      &:focus {
+        border-bottom-color: #3d3d3d;
+      }
+    }
+
+    &__submit svg {
+      width: 18px;
+    }
   }
-}
 </style>

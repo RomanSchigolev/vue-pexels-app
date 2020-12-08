@@ -1,14 +1,14 @@
 <template>
-  <vGallery />
+  <vPhotoSection/>
 </template>
 
 <script>
-import vGallery from "@/components/Photos/v-gallery";
+  import vPhotoSection from "@/components/Photos/v-photo-section";
 
-export default {
-  name: "v-photo",
-  components: { vGallery },
-};
+  export default {
+    name: "v-photo",
+    components: {vPhotoSection}
+  };
 </script>
 
 <style>

@@ -1,14 +1,14 @@
 <template>
-  <vWelcome />
+  <vWelcome/>
 </template>
 
 <script>
-import vWelcome from "@/components/WelcomePage/v-welcome";
+  import vWelcome from "@/components/WelcomePage/v-welcome";
 
-export default {
-  name: "v-home",
-  components: { vWelcome },
-};
+  export default {
+    name: "v-home",
+    components: {vWelcome}
+  };
 </script>
 
 <style lang="scss" scoped>

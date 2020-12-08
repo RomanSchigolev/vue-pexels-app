@@ -1,30 +1,33 @@
 <template>
   <div id="app">
-    <vHeader />
+    <vHeader/>
     <keep-alive>
       <main>
-        <router-view />
+        <router-view/>
       </main>
     </keep-alive>
-    <vFooter />
+    <vFooter/>
   </div>
 </template>
 
 <script>
-import vHeader from "@/components/Header/v-header";
-import vFooter from "@/components/Footer/v-footer";
+  import vHeader from "@/components/Header/v-header";
+  import vFooter from "@/components/Footer/v-footer";
 
-export default {
-  name: "app",
-  components: { vFooter, vHeader },
-};
+  export default {
+    name: "app",
+    components: {
+      vFooter,
+      vHeader
+    }
+  };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: $mainFont;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+  #app {
+    font-family: $mainFont;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 </style>

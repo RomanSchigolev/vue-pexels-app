@@ -23,56 +23,56 @@
 </template>
 
 <script>
-export default {
-  name: "v-header",
-  data() {
-    return {
-      menuItems: [
-        { title: "Home", url: "/" },
-        { title: "Photo", url: "/photo" },
-        { title: "Video", url: "/video" },
-      ],
-    };
-  },
-};
+  export default {
+    name: "v-header",
+    data() {
+      return {
+        menuItems: [
+          {title: "Home", url: "/"},
+          {title: "Photo", url: "/photo"},
+          {title: "Video", url: "/video"}
+        ]
+      };
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
-.menu {
-  &__list {
-    display: flex;
-  }
-
-  &__item:not(:last-child) {
-    margin-right: 24px;
-  }
-
-  &__link {
-    color: #a5a5a5;
-    text-decoration: none;
-    transition: color 0.3s linear;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    position: relative;
-
-    &::after {
-      @extend %underlineLink;
-      background-color: $secondColor;
+  .menu {
+    &__list {
+      display: flex;
     }
 
-    &:hover {
-      color: $secondColor;
+    &__item:not(:last-child) {
+      margin-right: 24px;
     }
 
-    &--active {
-      color: $secondColor;
+    &__link {
+      color: #a5a5a5;
+      text-decoration: none;
+      transition: color 0.3s linear;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      position: relative;
 
       &::after {
-        opacity: 1;
-        width: 100%;
+        @extend %underlineLink;
+        background-color: $secondColor;
+      }
+
+      &:hover {
+        color: $secondColor;
+      }
+
+      &--active {
+        color: $secondColor;
+
+        &::after {
+          opacity: 1;
+          width: 100%;
+        }
       }
     }
   }
-}
 </style>
