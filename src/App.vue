@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <vHeader/>
-    <keep-alive>
-      <main>
-        <router-view/>
-      </main>
-    </keep-alive>
+    <main>
+      <keep-alive>
+        <router-view/> 
+      </keep-alive>
+    </main>
     <vFooter/>
   </div>
 </template>

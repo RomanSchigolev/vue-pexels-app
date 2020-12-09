@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import vPhotoSection from "@/components/Photos/v-photo-section";
+  import vPhotoSection from "@/components/Photo/v-photo-section";
 
   export default {
     name: "v-photo",

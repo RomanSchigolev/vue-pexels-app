@@ -1,23 +1,27 @@
 <template>
-  <ul class="gallery__list"></ul>
+  <li class="gallery__item">
+    <router-link
+      class="gallery__link"
+      target="_blank"
+      to="#"
+    >
+      <img
+        src="https://via.placeholder.com/400x700"
+        alt="Test"
+        class="gallery__img">
+      <h3 class="gallery__author">Somebody</h3>
+    </router-link>
+  </li>
 </template>
 
 <script>
   export default {
-    name: "v-list",
+    name: "v-photo-item"
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
   .gallery {
-
-    &__list {
-      display: grid;
-      grid-gap: 2vmax;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      margin: 4vmax 0;
-    }
-
     &__item {
       position: relative;
       width: 100%;
@@ -57,16 +61,6 @@
       font-weight: 300;
       transform: translateY(100%);
       transition: transform 0.4s ease;
-    }
-
-    &__msg {
-      margin-top: 4vmax;
-      text-align: center;
-
-      & span {
-        font-size: 2vmax;
-        font-weight: 500;
-      }
     }
   }
 </style>

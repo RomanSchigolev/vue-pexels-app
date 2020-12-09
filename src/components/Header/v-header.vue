@@ -48,13 +48,14 @@
     }
 
     &__link {
+      position: relative;
+      display: inline-block;
       color: #a5a5a5;
       text-decoration: none;
       transition: color 0.3s linear;
       font-size: 20px;
       font-weight: 700;
       letter-spacing: 2px;
-      position: relative;
 
       &::after {
         @extend %underlineLink;

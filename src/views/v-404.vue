@@ -35,6 +35,7 @@
 
   .warning__redirect {
     position: relative;
+    display: inline-block;
     text-decoration: none;
     transition: color 0.3s linear;
     color: $accentColor;
