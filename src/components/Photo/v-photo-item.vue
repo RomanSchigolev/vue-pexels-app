@@ -1,22 +1,40 @@
 <template>
   <li class="gallery__item">
-    <router-link
+    <a
       class="gallery__link"
       target="_blank"
-      to="#"
+      :href="`${photoItem.url}`"
     >
       <img
-        src="https://via.placeholder.com/400x700"
-        alt="Test"
+        :src="photoItem.src.large"
+        :alt="`${setAltForImage(photoItem.url)}`"
         class="gallery__img">
-      <h3 class="gallery__author">Somebody</h3>
-    </router-link>
+      <h3 class="gallery__author">{{photoItem.photographer}}</h3>
+    </a>
   </li>
 </template>
 
 <script>
   export default {
-    name: "v-photo-item"
+    name: "v-photo-item",
+    props: {
+      photoItem: {
+        type: Object,
+        default() {
+          return {};
+        }
+      }
+    },
+    methods: {
+      setAltForImage(url) {
+        const listing = url.split("/").filter(item => item);
+        const descOfImage = listing.splice(-1).join("");
+        return descOfImage.replace(/[0-9]/g, '')
+          .split("-")
+          .filter(item => item)
+          .join(" ");
+      }
+    },
   }
 </script>
 

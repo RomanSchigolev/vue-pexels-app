@@ -1,10 +1,20 @@
 <template>
-  <div class="gallery__preloader"></div>
+  <div 
+    class="gallery__preloader" 
+    :class="{active: setPreloader}"></div>
 </template>
 
 <script>
   export default {
-    name: "v-preloader"
+    name: "v-preloader",
+    props: {
+      setPreloader: {
+        type: Boolean,
+        default() {
+          return false;
+        }
+      }
+    }
   }
 </script>
 
@@ -16,11 +26,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    transition: all 0.5s ease-in-out;
+    // transition: all 0.5s ease-in-out;
     max-width: 100%;
     z-index: 103;
 
-    &--active {
+    &.active {
       transform: translate(-50%, -50%) scale(1);
     }
 

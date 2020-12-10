@@ -1,26 +1,29 @@
 <template>
   <ul class="gallery__list">
-    <vPhotoItem/>
+    <vPhotoItem
+      v-for="photoItem in photoList"
+      :key="photoItem.id"
+      :photoItem="photoItem"
+    />
   </ul>
 </template>
 
 <script>
   import vPhotoItem from "@/components/Photo/v-photo-item";
-  import { mapActions } from "vuex";
 
   export default {
     name: "v-photo-list",
+    props: {
+      photoList: {
+        type: Array,
+        default() {
+          return [];
+        }
+      }
+    },
     components: {
       vPhotoItem
-    },
-    methods: {
-      ...mapActions([
-        "GET_PHOTOS"
-      ])
-    },
-    mounted() {
-      this.GET_PHOTOS();
-    },
+    }
   }
 </script>
 

@@ -6,7 +6,15 @@
           <router-link to="/" class="gallery__logo">PhotoGallery</router-link>
           <vFormSearch/>
         </div>
-        <vPhotoList/>
+        <transition name="fade">
+          <div v-if="PHOTOS.length === 0">
+            <vPreloader :setPreloader="true"/>
+            <vOverlay :setOverlay="true"/>
+          </div>
+        </transition>
+        <vPhotoList
+          :photoList="PHOTOS"
+        />
       </div>
     </div>
   </section>
@@ -15,13 +23,32 @@
 <script>
   import vFormSearch from "@/components/FormSearch/v-form-search";
   import vPhotoList from "@/components/Photo/v-photo-list";
+  import vPreloader from "@/components/Preloader/v-preloader";
+  import vOverlay from "@/components/Overlay/v-overlay";
+
+  import { mapActions, mapGetters } from "vuex";
 
   export default {
     name: "v-photo-section",
     components: {
       vFormSearch,
       vPhotoList,
-    }
+      vPreloader,
+      vOverlay
+    },
+    methods: {
+      ...mapActions([
+        "GET_PHOTOS"
+      ])
+    },
+    computed: {
+      ...mapGetters([
+        "PHOTOS"
+      ])
+    },
+    mounted() {
+      this.GET_PHOTOS()
+    },
   }
 </script>
 
@@ -40,5 +67,13 @@
       text-decoration: none;
       color: $secondColor;
     }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+      transition: all 0.5s ease-in-out;
+  }
+  
+  .fade-enter, .fade-leave-to {
+      opacity: 0;
   }
 </style>
