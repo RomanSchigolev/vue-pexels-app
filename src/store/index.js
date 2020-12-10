@@ -22,10 +22,14 @@ export default new Vuex.Store({
           }
         });
         commit("SET_PHOTOS", photoList.data.photos);
+        console.log(photoList);
         return photoList;
       } catch (err) {
-        console.log(err);
-        return err;
+        if (err.response) {
+          console.log("response", err.response);
+        } else if (err.request) {
+          console.log("request", err.request);
+        }
       }
     }
   },
