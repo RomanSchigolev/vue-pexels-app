@@ -7,25 +7,23 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     photoList: [],
+    pageIndex: 1,
     error: false,
-    loading: false
+    preloader: null
   },
   mutations: {
-    SET_PHOTOS(state, photoList) {
-      state.photoList = photoList;
-    },
-    SET_ERROR_RESPONSE(state, error) {
-      state.error = error;
-    },
-    SET_LOADER(state, loading) {
-      state.loading = loading;
-    }
+    SET_PHOTOS: (state, photoList) => state.photoList = photoList,
+    INCREASE_PAGE_INDEX: state => state.pageIndex++,
+    ADD_NEW_PHOTOS: (state, morePhotoList) => state.photoList.push(...morePhotoList),
+    SET_ERROR_RESPONSE: (state, error) => state.error = error,
+    SET_PRELOADER: state => state.preloader = true,
+    REMOVE_PRELOADER: state => state.preloader = false
   },
   actions: {
-    async GET_PHOTOS({commit}) {
+    async GET_PHOTOS({commit, getters}) {
       try {
-        commit("SET_LOADER", true);
-        const photoList = await axios.get("https://api.pexels.com/v1/curated?page=1&per_page=12", {
+        commit("SET_PRELOADER");
+        const photoList = await axios.get(`https://api.pexels.com/v1/curated?page=${getters.PAGE_INDEX}&per_page=18`, {
           headers: {
             Authorization: process.env.VUE_APP_API_KEY
           }
@@ -36,21 +34,38 @@ export default new Vuex.Store({
         if (err.response) {
           commit("SET_ERROR_RESPONSE", true);
         } else if (err.request) {
+          console.log(err.request);
         }
       } finally {
-        commit("SET_LOADER", false);
+        commit("REMOVE_PRELOADER");
+      }
+    },
+    async LOAD_MORE_PHOTOS({commit, getters}) {
+      try {
+        commit("SET_PRELOADER");
+        commit("INCREASE_PAGE_INDEX");
+        const morePhotoList = await axios.get(`https://api.pexels.com/v1/curated?page=${getters.PAGE_INDEX}&per_page=18`, {
+          headers: {
+            Authorization: process.env.VUE_APP_API_KEY
+          }
+        });
+        commit("ADD_NEW_PHOTOS", morePhotoList.data.photos);
+        return morePhotoList;
+      } catch (err) {
+        if (err.response) {
+          commit("SET_ERROR_RESPONSE", true);
+        } else if (err.request) {
+          console.log(err.request);
+        }
+      } finally {
+        commit("REMOVE_PRELOADER");
       }
     }
   },
   getters: {
-    PHOTOS(state) {
-      return state.photoList;
-    },
-    ERROR_RESPONSE(state) {
-      return state.error;
-    },
-    PRELOADER(state) {
-      return state.loading;
-    }
+    PHOTOS: state => state.photoList,
+    ERROR_RESPONSE: state => state.error,
+    PRELOADER: state => state.preloader,
+    PAGE_INDEX: state => state.pageIndex
   }
 })
