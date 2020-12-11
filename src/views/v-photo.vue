@@ -10,6 +10,3 @@
     components: {vPhotoSection}
   };
 </script>
-
-<style>
-</style>

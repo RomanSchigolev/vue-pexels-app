@@ -4,6 +4,7 @@
       type="button"
       class="gallery__btn"
       aria-label="load more"
+      @click="loadMorePhotos"
     >
       Load more
     </button>
@@ -11,13 +12,24 @@
 </template>
 
 <script>
+  import {mapActions, mapGetters} from "vuex";
+
   export default {
-    name: "v-load-more"
-  }
+    name: "v-load-more",
+    methods: {
+      ...mapActions([
+        "LOAD_MORE_PHOTOS"
+      ]),
+      loadMorePhotos() {
+        this.LOAD_MORE_PHOTOS();
+      }
+    }
+  };
 </script>
 
 <style scoped lang="scss">
   .gallery__footer {
+    display: flex;
     justify-content: center;
   }
 

@@ -3,7 +3,7 @@
     <vHeader/>
     <main>
       <keep-alive>
-        <router-view/> 
+        <router-view/>
       </keep-alive>
     </main>
     <vFooter/>

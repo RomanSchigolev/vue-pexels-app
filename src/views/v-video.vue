@@ -7,6 +7,3 @@
     name: "v-video"
   };
 </script>
-
-<style>
-</style>

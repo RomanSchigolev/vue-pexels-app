@@ -3,11 +3,11 @@
     <a
       class="gallery__link"
       target="_blank"
-      :href="`${photoItem.url}`"
+      :href="photoItem.url"
     >
       <img
         :src="photoItem.src.large"
-        :alt="`${setAltForImage(photoItem.url)}`"
+        :alt="setAltForImage(photoItem.url)"
         class="gallery__img">
       <h3 class="gallery__author">{{photoItem.photographer}}</h3>
     </a>
@@ -34,7 +34,7 @@
           .filter(item => item)
           .join(" ");
       }
-    },
+    }
   }
 </script>
 

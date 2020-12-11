@@ -5,6 +5,7 @@
       type="text"
       name="photoName"
       placeholder="Search image"
+      v-model="searchQuery"
     />
     <button class="form__submit" type="submit">
       <svg
@@ -31,7 +32,15 @@
 
 <script>
   export default {
-    name: "v-form-search"
+    name: "v-form-search",
+    props: {
+      searchQuery: {
+        type: String,
+        default() {
+          return "";
+        }
+      }
+    }
   }
 </script>
 

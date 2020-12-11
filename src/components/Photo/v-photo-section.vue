@@ -6,23 +6,16 @@
           <router-link to="/" class="gallery__logo">PhotoGallery</router-link>
           <vFormSearch/>
         </div>
-        <transition-group v-if="PRELOADER" name="fade">
-          <vPreloader
-            key="preloader"
-            :setPreloader="true"
-          />
-          <vOverlay
-            key="overlay"
-            :setOverlay="true"
-          />
-        </transition-group>
+        <vPreloader :isActive="PRELOADER"/>
         <div class="gallery__msg" v-if="ERROR_RESPONSE">
           <span>{{errorMsg}}</span>
         </div>
-        <vPhotoList
-          v-else
-          :photoList="PHOTOS"
-        />
+        <div v-else-if="PHOTOS.length">
+          <vPhotoList
+            :photoList="PHOTOS"
+          />
+          <vLoadMore/>
+        </div>
       </div>
     </div>
   </section>
@@ -32,9 +25,9 @@
   import vFormSearch from "@/components/FormSearch/v-form-search";
   import vPhotoList from "@/components/Photo/v-photo-list";
   import vPreloader from "@/components/Preloader/v-preloader";
-  import vOverlay from "@/components/Overlay/v-overlay";
+  import vLoadMore from "@/components/LoadMore/v-load-more";
 
-  import { mapActions, mapGetters } from "vuex";
+  import {mapActions, mapGetters} from "vuex";
 
   export default {
     name: "v-photo-section",
@@ -47,7 +40,7 @@
       vFormSearch,
       vPhotoList,
       vPreloader,
-      vOverlay
+      vLoadMore
     },
     methods: {
       ...mapActions([
@@ -63,7 +56,7 @@
     },
     mounted() {
       this.GET_PHOTOS()
-    },
+    }
   }
 </script>
 
@@ -92,13 +85,5 @@
         text-transform: uppercase;
       }
     }
-  }
-
-  .fade-enter-active, .fade-leave-active {
-      transition: all 0.5s ease-in-out;
-  }
-  
-  .fade-enter, .fade-leave-to {
-      opacity: 0;
   }
 </style>

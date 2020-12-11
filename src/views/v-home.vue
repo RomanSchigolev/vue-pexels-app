@@ -10,6 +10,3 @@
     components: {vWelcome}
   };
 </script>
-
-<style lang="scss" scoped>
-</style>
