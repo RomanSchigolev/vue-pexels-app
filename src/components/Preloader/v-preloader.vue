@@ -1,58 +1,69 @@
 <template>
-  <div 
-    class="gallery__preloader" 
-    :class="{active: setPreloader}"></div>
+  <transition name="fade">
+    <div class="preloader" v-show="isActive" :class="{active: isActive}">
+      <self-building-square-spinner
+        class="preloader__spinner"
+        :animation-duration="900"
+        :size="100"
+        :color="'#05a081'"
+      />
+    </div>
+  </transition>
 </template>
 
 <script>
+  import {SelfBuildingSquareSpinner} from "epic-spinners";
+
   export default {
     name: "v-preloader",
     props: {
-      setPreloader: {
+      isActive: {
         type: Boolean,
         default() {
           return false;
         }
       }
-    }
-  }
+    },
+    components: {
+      SelfBuildingSquareSpinner,
+    },
+  };
 </script>
 
 <style scoped lang="scss">
-  .gallery__preloader {
-    width: 140px;
-    height: 140px;
+  .preloader {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    // transition: all 0.5s ease-in-out;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #000000eb;
+    z-index: 10000;
     max-width: 100%;
-    z-index: 103;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s;
 
     &.active {
-      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: all;
     }
 
-    &:after {
-      content: "";
+    &__spinner {
       position: absolute;
-      display: block;
-      width: 124px;
-      height: 124px;
-      border-radius: 50%;
-      border: 6px solid $accentColor;
-      border-color: $accentColor transparent $accentColor transparent;
-      animation: gallery__preloader 1.2s linear infinite;
+      top: 50% !important;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
-  @keyframes gallery__preloader {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 1s;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 </style>
