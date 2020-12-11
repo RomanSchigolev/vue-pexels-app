@@ -6,13 +6,21 @@
           <router-link to="/" class="gallery__logo">PhotoGallery</router-link>
           <vFormSearch/>
         </div>
-        <transition name="fade">
-          <div v-if="PHOTOS.length === 0">
-            <vPreloader :setPreloader="true"/>
-            <vOverlay :setOverlay="true"/>
-          </div>
-        </transition>
+        <transition-group v-if="PRELOADER" name="fade">
+          <vPreloader
+            key="preloader"
+            :setPreloader="true"
+          />
+          <vOverlay
+            key="overlay"
+            :setOverlay="true"
+          />
+        </transition-group>
+        <div class="gallery__msg" v-if="ERROR_RESPONSE">
+          <span>{{errorMsg}}</span>
+        </div>
         <vPhotoList
+          v-else
           :photoList="PHOTOS"
         />
       </div>
@@ -30,6 +38,11 @@
 
   export default {
     name: "v-photo-section",
+    data() {
+      return {
+        errorMsg: "something terrible happened"
+      }
+    },
     components: {
       vFormSearch,
       vPhotoList,
@@ -43,7 +56,9 @@
     },
     computed: {
       ...mapGetters([
-        "PHOTOS"
+        "PHOTOS",
+        "ERROR_RESPONSE",
+        "PRELOADER"
       ])
     },
     mounted() {
@@ -66,6 +81,16 @@
       letter-spacing: -1px;
       text-decoration: none;
       color: $secondColor;
+    }
+
+    &__msg {
+      text-align: center;
+      margin-top: 6vmax;
+
+      span {
+        font-size: 2.5vmax;
+        text-transform: uppercase;
+      }
     }
   }
 

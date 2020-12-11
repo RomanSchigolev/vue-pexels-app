@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar{
+  width: 0.6vmax;
+}
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+::-webkit-scrollbar-thumb{
+  background-color: $accentColor;
+}
+
 body {
   font-size: $mainFontSize;
 }

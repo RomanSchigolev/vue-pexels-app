@@ -45,7 +45,7 @@
       width: 100%;
       height: 380px;
       overflow: hidden;
-      border-radius: 8px;
+      border-radius: 10px;
       transition: box-shadow 0.3s ease;
 
       &:hover {
