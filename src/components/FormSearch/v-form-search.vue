@@ -1,11 +1,13 @@
 <template>
-  <form class="form">
+  <form class="form"
+    @submit.prevent="onSubmit"
+  >
     <input
       class="form__textfield"
       type="text"
-      name="photoName"
       placeholder="Search image"
-      v-model="searchQuery"
+      :value="searchQuery"
+      ref="searchQuery"
     />
     <button class="form__submit" type="submit">
       <svg
@@ -31,14 +33,21 @@
 </template>
 
 <script>
+  import {mapActions} from "vuex";
+
   export default {
     name: "v-form-search",
     props: {
       searchQuery: {
         type: String,
-        default() {
-          return "";
-        }
+        default: ""
+      }
+    },
+    methods: {
+      onSubmit() {
+        let searchQuery = this.$refs.searchQuery.value;
+        this.$store.dispatch("GET_SEARCHED_PHOTOS", searchQuery);
+        this.$emit("input", searchQuery);
       }
     }
   }

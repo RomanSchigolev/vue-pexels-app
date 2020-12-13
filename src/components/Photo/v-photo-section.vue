@@ -3,8 +3,10 @@
     <div class="container">
       <div class="gallery">
         <div class="gallery__header">
-          <router-link to="/" class="gallery__logo">PhotoGallery</router-link>
-          <vFormSearch/>
+          <router-link to="/photo" class="gallery__logo">PhotoGallery</router-link>
+          <vFormSearch
+            v-model="searchQuery"
+          />
         </div>
         <vPreloader :isActive="PRELOADER"/>
         <div class="gallery__msg" v-if="ERROR_RESPONSE">
@@ -14,7 +16,10 @@
           <vPhotoList
             :photoList="PHOTOS"
           />
-          <vLoadMore/>
+          <vLoadMore
+            @loadMore="loadMorePhotos"
+            v-model="pageIndex"
+          />
         </div>
       </div>
     </div>
@@ -33,7 +38,9 @@
     name: "v-photo-section",
     data() {
       return {
-        errorMsg: "something terrible happened"
+        errorMsg: "something terrible happened",
+        searchQuery: "",
+        pageIndex: 1
       }
     },
     components: {
@@ -44,8 +51,18 @@
     },
     methods: {
       ...mapActions([
-        "GET_PHOTOS"
-      ])
+        "GET_PHOTOS",
+        "LOAD_MORE_PHOTOS"
+      ]),
+      loadMorePhotos() {
+        this.pageIndex++;
+        this.LOAD_MORE_PHOTOS(this.pageIndex);
+      }
+    },
+    watch: {
+      searchQuery(newVal, oldVal) {
+        newVal !== oldVal ? this.pageIndex = 1 : this.pageIndex;
+      }
     },
     computed: {
       ...mapGetters([

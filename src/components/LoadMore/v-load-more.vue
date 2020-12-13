@@ -4,7 +4,7 @@
       type="button"
       class="gallery__btn"
       aria-label="load more"
-      @click="loadMorePhotos"
+      @click="loadMore"
     >
       Load more
     </button>
@@ -12,16 +12,19 @@
 </template>
 
 <script>
-  import {mapActions, mapGetters} from "vuex";
+  import {mapActions} from "vuex";
 
   export default {
     name: "v-load-more",
+    props: {
+      pageIndex: {
+        type: Number,
+        default: 1
+      }
+    },
     methods: {
-      ...mapActions([
-        "LOAD_MORE_PHOTOS"
-      ]),
-      loadMorePhotos() {
-        this.LOAD_MORE_PHOTOS();
+      loadMore() {
+        this.$emit("loadMore", this.pageIndex);
       }
     }
   };
