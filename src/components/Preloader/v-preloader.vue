@@ -19,9 +19,7 @@
     props: {
       isActive: {
         type: Boolean,
-        default() {
-          return false;
-        }
+        default: false
       }
     },
     components: {

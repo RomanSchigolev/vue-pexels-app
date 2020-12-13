@@ -20,9 +20,7 @@
     props: {
       photoItem: {
         type: Object,
-        default() {
-          return {};
-        }
+        default: {}
       }
     },
     methods: {

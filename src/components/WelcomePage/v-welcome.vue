@@ -14,7 +14,9 @@
   </section>
 </template>
 <script>
-  export default {};
+  export default {
+    name: "v-welcome"
+  };
 </script>
 <style lang="scss" scoped>
   .welcome {

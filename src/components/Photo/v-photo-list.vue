@@ -16,9 +16,7 @@
     props: {
       photoList: {
         type: Array,
-        default() {
-          return [];
-        }
+        default: []
       }
     },
     components: {
