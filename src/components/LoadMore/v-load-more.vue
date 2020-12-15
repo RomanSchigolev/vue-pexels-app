@@ -37,12 +37,12 @@
   }
 
   .gallery__btn {
-    padding: 1.2vmax 1.2vmax;
+    padding: 1.2vmax 1.3vmax;
     text-transform: uppercase;
     background-color: $secondColor;
     border-radius: 3px;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 900;
     letter-spacing: 2px;
     transition: background-color 0.4s ease;

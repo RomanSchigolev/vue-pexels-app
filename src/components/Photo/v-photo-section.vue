@@ -86,7 +86,7 @@
 
     &__logo {
       display: inline-block;
-      font-size: 10vmin;
+      font-size: 11vmin;
       font-weight: 900;
       letter-spacing: -1px;
       text-decoration: none;

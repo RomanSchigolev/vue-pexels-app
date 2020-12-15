@@ -56,7 +56,7 @@
 <style scoped lang="scss">
   .form {
     display: flex;
-    margin-top: 1.4vmax;
+    margin-top: 2vmax;
     max-width: 300px;
 
     &__textfield {

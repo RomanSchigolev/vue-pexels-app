@@ -14,6 +14,10 @@
   background-color: $accentColor;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-size: $mainFontSize;
 }
