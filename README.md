@@ -4,12 +4,12 @@ In this application, I use the API from Pexels. Using this API, you can search f
 
 This app is still under development.
 
-## API
 ---
+
+## API
 https://www.pexels.com/api/
 
 ## Project setup
----
 ```
 npm install
 ```
