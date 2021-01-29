@@ -7,9 +7,12 @@
             to="/photo" 
             class="gallery__logo"
           >
-            PhotoGallery
+            Photo Gallery
           </router-link>
-          <vFormSearch v-model="searchQuery"/>
+          <vFormSearch 
+            v-model="searchQuery"
+            placeHolder="Search Images"
+          />
         </div>
         <vPreloader :isActive="PRELOADER"/>
         <div 
@@ -80,31 +83,3 @@
     }
   }
 </script>
-
-<style scoped lang="scss">
-  .gallery {
-    &__header {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &__logo {
-      display: inline-block;
-      font-size: 11vmin;
-      font-weight: 900;
-      letter-spacing: -1px;
-      text-decoration: none;
-      color: $secondColor;
-    }
-
-    &__msg {
-      text-align: center;
-      margin-top: 6vmax;
-
-      span {
-        font-size: 2.5vmax;
-        text-transform: uppercase;
-      }
-    }
-  }
-</style>
