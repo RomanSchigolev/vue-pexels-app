@@ -5,7 +5,7 @@
     <input
       class="form__textfield"
       type="text"
-      placeholder="Search image"
+      :placeholder="placeHolder"
       :value="searchQuery"
       ref="searchQuery"
     />
@@ -39,6 +39,10 @@
     name: "v-form-search",
     props: {
       searchQuery: {
+        type: String,
+        default: ""
+      },
+      placeHolder: {
         type: String,
         default: ""
       }
