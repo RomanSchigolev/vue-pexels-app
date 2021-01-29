@@ -44,7 +44,7 @@
     }
 
     &__item:not(:last-child) {
-      margin-right: 24px;
+      margin-right: 35px;
     }
 
     &__link {
