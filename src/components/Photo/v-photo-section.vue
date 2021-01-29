@@ -3,19 +3,23 @@
     <div class="container">
       <div class="gallery">
         <div class="gallery__header">
-          <router-link to="/photo" class="gallery__logo">PhotoGallery</router-link>
-          <vFormSearch
-            v-model="searchQuery"
-          />
+          <router-link 
+            to="/photo" 
+            class="gallery__logo"
+          >
+            PhotoGallery
+          </router-link>
+          <vFormSearch v-model="searchQuery"/>
         </div>
         <vPreloader :isActive="PRELOADER"/>
-        <div class="gallery__msg" v-if="ERROR_RESPONSE">
+        <div 
+          class="gallery__msg"
+          v-if="ERROR_RESPONSE"
+        >
           <span>{{errorMsg}}</span>
         </div>
         <div v-else-if="PHOTOS.length">
-          <vPhotoList
-            :photoList="PHOTOS"
-          />
+          <vPhotoList :photoList="PHOTOS"/>
           <vLoadMore
             @loadMore="loadMorePhotos"
             v-model="pageIndex"

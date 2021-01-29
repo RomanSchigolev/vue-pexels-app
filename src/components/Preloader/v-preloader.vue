@@ -1,6 +1,10 @@
 <template>
   <transition name="fade">
-    <div class="preloader" v-show="isActive" :class="{active: isActive}">
+    <div
+      class="preloader"
+      v-show="isActive" 
+      :class="{active: isActive}"
+    >
       <self-building-square-spinner
         class="preloader__spinner"
         :animation-duration="900"

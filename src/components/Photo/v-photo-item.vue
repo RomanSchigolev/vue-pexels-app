@@ -8,7 +8,8 @@
       <img
         :src="photoItem.src.large"
         :alt="setAltForImage(photoItem.url)"
-        class="gallery__img">
+        class="gallery__img"
+      >
       <h3 class="gallery__author">{{photoItem.photographer}}</h3>
     </a>
   </li>
