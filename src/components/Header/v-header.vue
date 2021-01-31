@@ -41,6 +41,7 @@
   .menu {
     &__list {
       display: flex;
+      justify-content: space-between;
     }
 
     &__item:not(:last-child) {

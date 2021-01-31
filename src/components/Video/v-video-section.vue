@@ -1,31 +1,29 @@
 <template>
-  <section class="section__photo">
+  <section class="section__video">
     <div class="container">
       <div class="gallery">
         <div class="gallery__header">
-          <router-link 
-            to="/photo" 
+          <router-link
+            to="/video"
             class="gallery__logo"
           >
-            Photo Gallery
+            Video Gallery
           </router-link>
-          <vFormSearch 
+          <vFormSearch
             v-model="searchQuery"
-            placeHolder="Search Images"
-            @input="getSearchedQuery"
+            placeHolder="Search Videos"
           />
         </div>
         <vPreloader :isActive="PRELOADER"/>
-        <div 
-          class="gallery__msg"
+        <div
+          class="gellery__msg"
           v-if="ERROR_RESPONSE"
         >
           <span>{{errorMsg}}</span>
         </div>
-        <div v-else-if="PHOTOS.length">
-          <vPhotoList :photoList="PHOTOS"/>
+        <div v-else-if="VIDEOS.length">
+          <vVideoList :videoList="VIDEOS"/>
           <vLoadMore
-            @loadMore="loadMorePhotos"
             v-model="pageIndex"
           />
         </div>
@@ -36,14 +34,14 @@
 
 <script>
   import vFormSearch from "@/components/FormSearch/v-form-search";
-  import vPhotoList from "@/components/Photo/v-photo-list";
+  import vVideoList from "@/components/Video/v-video-list";
   import vPreloader from "@/components/Preloader/v-preloader";
   import vLoadMore from "@/components/LoadMore/v-load-more";
 
   import {mapActions, mapGetters} from "vuex";
 
   export default {
-    name: "v-photo-section",
+    name: "v-video-section",
     data() {
       return {
         errorMsg: "something terrible happened",
@@ -53,37 +51,24 @@
     },
     components: {
       vFormSearch,
-      vPhotoList,
+      vVideoList,
       vPreloader,
       vLoadMore
     },
     methods: {
       ...mapActions([
-        "GET_PHOTOS",
-        "LOAD_MORE_PHOTOS"
-      ]),
-      loadMorePhotos() {
-        this.pageIndex++;
-        this.LOAD_MORE_PHOTOS(this.pageIndex);
-      },
-      getSearchedQuery() {
-        this.$store.dispatch("GET_SEARCHED_PHOTOS", this.searchQuery);
-      }
-    },
-    watch: {
-      searchQuery(newVal, oldVal) {
-        newVal !== oldVal ? this.pageIndex = 1 : this.pageIndex;
-      }
+        "GET_VIDEOS"
+      ])
     },
     computed: {
       ...mapGetters([
-        "PHOTOS",
+        "VIDEOS",
         "ERROR_RESPONSE",
         "PRELOADER"
       ])
     },
     mounted() {
-      this.GET_PHOTOS()
-    }
+      this.GET_VIDEOS();
+    },
   }
 </script>

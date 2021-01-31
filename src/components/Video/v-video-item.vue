@@ -1,28 +1,45 @@
 <template>
+
   <li class="gallery__item">
     <a
       class="gallery__link"
       target="_blank"
-      :href="photoItem.url"
     >
       <img
-        :src="photoItem.src.large"
-        :alt="setAltForImage(photoItem.url)"
+        :src="videoItem.image"
+        :alt="setAltForImage(videoItem.url)"
         class="gallery__img"
       >
-      <h3 class="gallery__author">{{photoItem.photographer}}</h3>
+      <button
+        class="gallery__play-video"
+        type="button"
+        aria-label="Play video"
+      >
+        <icons
+          name="play"
+          color="#05a081"
+          width="3vw"
+          height="3vw"
+        />
+      </button>
+      <h3 class="gallery__author">{{videoItem.user.name}}</h3>
     </a>
   </li>
 </template>
 
 <script>
+  import icons from "v-svg-icons";
+
   export default {
-    name: "v-photo-item",
+    name: "v-video-item",
     props: {
-      photoItem: {
+      videoItem: {
         type: Object,
         default: {}
       }
+    },
+    components: {
+      icons
     },
     methods: {
       setAltForImage(url) {
@@ -53,10 +70,15 @@
         & .gallery__author {
           transform: translateY(0);
         }
+
+        & .gallery__play-video {
+          opacity: 1;
+        }
       }
 
       &:hover .gallery__img {
         transform: scale(1.1);
+        filter: brightness(0.6);
       }
     }
 
@@ -64,7 +86,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.6s ease, filter 0.6s ease;
       will-change: transform;
     }
 
@@ -78,6 +100,15 @@
       font-weight: 300;
       transform: translateY(100%);
       transition: transform 0.4s ease;
+    }
+
+    &__play-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
   }
 </style>
