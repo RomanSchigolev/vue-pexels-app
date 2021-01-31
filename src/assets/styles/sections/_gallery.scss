@@ -13,6 +13,13 @@
     color: $secondColor;
   }
 
+  &__list {
+    display: grid;
+    grid-gap: 2vmax;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 4vmax 0;
+  }
+
   &__msg {
     text-align: center;
     margin-top: 6vmax;
