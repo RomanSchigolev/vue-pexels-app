@@ -50,7 +50,6 @@
     methods: {
       onSubmit() {
         let searchQuery = this.$refs.searchQuery.value;
-        this.$store.dispatch("GET_SEARCHED_PHOTOS", searchQuery);
         this.$emit("input", searchQuery);
       }
     }
