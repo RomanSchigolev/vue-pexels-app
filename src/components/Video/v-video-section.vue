@@ -12,18 +12,20 @@
           <vFormSearch
             v-model="searchQuery"
             placeHolder="Search Videos"
+            @input="getSearchedQuery"
           />
         </div>
         <vPreloader :isActive="PRELOADER"/>
         <div
-          class="gellery__msg"
-          v-if="ERROR_RESPONSE"
+          class="gallery__msg"
+          v-if="ERROR_RESPONSE_VIDEOS"
         >
           <span>{{errorMsg}}</span>
         </div>
         <div v-else-if="VIDEOS.length">
           <vVideoList :videoList="VIDEOS"/>
           <vLoadMore
+            @loadMore="loadMoreVideos"
             v-model="pageIndex"
           />
         </div>
@@ -56,19 +58,33 @@
       vLoadMore
     },
     methods: {
-      ...mapActions([
-        "GET_VIDEOS"
-      ])
+      ...mapActions("video", [
+        "GET_VIDEOS",
+        "LOAD_MORE_VIDEOS",
+        "GET_SEARCHED_VIDEOS"
+      ]),
+      loadMoreVideos() {
+        this.pageIndex++;
+        this.LOAD_MORE_VIDEOS(this.pageIndex);
+      },
+      getSearchedQuery() {
+        this.GET_SEARCHED_VIDEOS(this.searchQuery);
+      }
+    },
+    watch: {
+      searchQuery(newVal, oldVal) {
+        newVal !== oldVal ? this.pageIndex = 1 : this.pageIndex;
+      }
     },
     computed: {
-      ...mapGetters([
+      ...mapGetters("video", [
         "VIDEOS",
-        "ERROR_RESPONSE",
-        "PRELOADER"
-      ])
+        "ERROR_RESPONSE_VIDEOS"
+      ]),
+      ...mapGetters(["PRELOADER"])
     },
     mounted() {
       this.GET_VIDEOS();
     },
-  }
+  };
 </script>

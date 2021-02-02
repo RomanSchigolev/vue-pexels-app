@@ -22,5 +22,5 @@
     components: {
       vPhotoItem
     }
-  }
+  };
 </script>

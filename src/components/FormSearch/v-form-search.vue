@@ -53,7 +53,7 @@
         this.$emit("input", searchQuery);
       }
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">

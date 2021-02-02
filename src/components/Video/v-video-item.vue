@@ -51,7 +51,7 @@
           .join(' ');
       }
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">

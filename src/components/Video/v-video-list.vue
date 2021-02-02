@@ -22,5 +22,5 @@
     components: {
       vVideoItem
     }
-  }
+  };
 </script>

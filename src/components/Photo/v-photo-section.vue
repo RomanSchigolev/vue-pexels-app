@@ -3,22 +3,22 @@
     <div class="container">
       <div class="gallery">
         <div class="gallery__header">
-          <router-link 
-            to="/photo" 
+          <router-link
+            to="/photo"
             class="gallery__logo"
           >
             Photo Gallery
           </router-link>
-          <vFormSearch 
+          <vFormSearch
             v-model="searchQuery"
             placeHolder="Search Images"
             @input="getSearchedQuery"
           />
         </div>
         <vPreloader :isActive="PRELOADER"/>
-        <div 
+        <div
           class="gallery__msg"
-          v-if="ERROR_RESPONSE"
+          v-if="ERROR_RESPONSE_PHOTOS"
         >
           <span>{{errorMsg}}</span>
         </div>
@@ -58,16 +58,17 @@
       vLoadMore
     },
     methods: {
-      ...mapActions([
+      ...mapActions("photo", [
         "GET_PHOTOS",
-        "LOAD_MORE_PHOTOS"
+        "LOAD_MORE_PHOTOS",
+        "GET_SEARCHED_PHOTOS"
       ]),
       loadMorePhotos() {
         this.pageIndex++;
         this.LOAD_MORE_PHOTOS(this.pageIndex);
       },
       getSearchedQuery() {
-        this.$store.dispatch("GET_SEARCHED_PHOTOS", this.searchQuery);
+        this.GET_SEARCHED_PHOTOS(this.searchQuery);
       }
     },
     watch: {
@@ -76,14 +77,14 @@
       }
     },
     computed: {
-      ...mapGetters([
+      ...mapGetters("photo", [
         "PHOTOS",
-        "ERROR_RESPONSE",
-        "PRELOADER"
-      ])
+        "ERROR_RESPONSE_PHOTOS"
+      ]),
+      ...mapGetters(["PRELOADER"])
     },
     mounted() {
       this.GET_PHOTOS()
     }
-  }
+  };
 </script>

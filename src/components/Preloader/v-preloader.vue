@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       class="preloader"
-      v-show="isActive" 
+      v-show="isActive"
       :class="{active: isActive}"
     >
       <self-building-square-spinner
