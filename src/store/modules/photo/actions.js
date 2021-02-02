@@ -2,9 +2,9 @@ import axios from 'axios';
 
 export default {
   // Getting curated photos that are displayed by default
-  async GET_PHOTOS({ commit }) {
+  async GET_PHOTOS({commit}) {
     try {
-      commit('SET_PRELOADER');
+      commit('SET_PRELOADER', null, {root: true});
       const photoList = await axios.get(`https://api.pexels.com/v1/curated?page=1&per_page=12`, {
         headers: {
           Authorization: process.env.VUE_APP_API_KEY
@@ -14,20 +14,20 @@ export default {
       return photoList;
     } catch (err) {
       if (err.response) {
-        commit('SET_ERROR_RESPONSE', true);
+        commit('SET_ERROR_RESPONSE_PHOTOS', true);
       } else if (err.request) {
         console.log(err.request);
       }
     } finally {
-      commit('REMOVE_PRELOADER');
+      commit('REMOVE_PRELOADER', null, {root: true});
     }
   },
   // Uploading new photos to the photo list
-  async LOAD_MORE_PHOTOS({ commit, getters }, pageIndex) {
+  async LOAD_MORE_PHOTOS({commit, getters}, pageIndex) {
     try {
-      commit('SET_PRELOADER');
+      commit('SET_PRELOADER', null, {root: true});
       // If the text field for entering a keyword/phrase is empty
-      if (!getters.SEARCH_QUERY) {
+      if (!getters.SEARCH_QUERY_PHOTOS) {
         const morePhotoList = await axios.get(`https://api.pexels.com/v1/curated?page=${pageIndex}&per_page=12`, {
           headers: {
             Authorization: process.env.VUE_APP_API_KEY
@@ -38,7 +38,7 @@ export default {
       } else {
         // Otherwise, we work with the entered word/phrase
         const searchedPhotoList = await axios.get(
-          `https://api.pexels.com/v1/search?query=${getters.SEARCH_QUERY}&page=${pageIndex}&per_page=12`,
+          `https://api.pexels.com/v1/search?query=${getters.SEARCH_QUERY_PHOTOS}&page=${pageIndex}&per_page=12`,
           {
             headers: {
               Authorization: process.env.VUE_APP_API_KEY
@@ -50,19 +50,19 @@ export default {
       }
     } catch (err) {
       if (err.response) {
-        commit('SET_ERROR_RESPONSE', true);
+        commit('SET_ERROR_RESPONSE_PHOTOS', true);
       } else if (err.request) {
         console.log(err.request);
       }
     } finally {
-      commit('REMOVE_PRELOADER');
+      commit('REMOVE_PRELOADER', null, {root: true});
     }
   },
   // Finding photos for the entered word / phrase
-  async GET_SEARCHED_PHOTOS({ commit }, searchQuery) {
+  async GET_SEARCHED_PHOTOS({commit}, searchQuery) {
     try {
-      commit('SET_SEARCH_QUERY', searchQuery);
-      commit('SET_PRELOADER');
+      commit('SET_SEARCH_QUERY_PHOTOS', searchQuery);
+      commit('SET_PRELOADER', null, {root: true});
       const searchedPhotoList = await axios.get(
         `https://api.pexels.com/v1/search?query=${searchQuery}&page=1&per_page=12`,
         {
@@ -73,22 +73,22 @@ export default {
       );
       // If no photos were found
       if (searchedPhotoList.data.total_results === 0) {
-        commit('SET_ERROR_RESPONSE', true);
+        commit('SET_ERROR_RESPONSE_PHOTOS', true);
         commit('SET_PHOTOS', []);
         return searchedPhotoList;
       } else {
-        commit('SET_ERROR_RESPONSE', false);
+        commit('SET_ERROR_RESPONSE_PHOTOS', false);
         commit('SET_PHOTOS', searchedPhotoList.data.photos);
         return searchedPhotoList;
       }
     } catch (err) {
       if (err.response) {
-        commit('SET_ERROR_RESPONSE', true);
+        commit('SET_ERROR_RESPONSE_PHOTOS', true);
       } else if (err.request) {
         console.log(err.request);
       }
     } finally {
-      commit('REMOVE_PRELOADER');
+      commit('REMOVE_PRELOADER', null, {root: true});
     }
   }
 };
