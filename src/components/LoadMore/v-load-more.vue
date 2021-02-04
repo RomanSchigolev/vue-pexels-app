@@ -42,7 +42,7 @@
     background-color: $secondColor;
     border-radius: 3px;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 1.7vmax;
     font-weight: 900;
     letter-spacing: 2px;
     transition: background-color 0.4s ease;

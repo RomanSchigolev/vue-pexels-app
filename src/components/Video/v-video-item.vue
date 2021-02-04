@@ -18,8 +18,8 @@
         <icons
           name="play"
           color="#05a081"
-          width="3vw"
-          height="3vw"
+          width="4vmax"
+          height="4vmax"
         />
       </button>
       <h3 class="gallery__author">{{videoItem.user.name}}</h3>
@@ -64,22 +64,23 @@
       border-radius: 10px;
       transition: box-shadow 0.3s ease;
 
-      &:hover {
+      &:hover, &:focus-within {
         box-shadow: 0 0 5px 2px #645f5f;
 
-        & .gallery__author {
+        .gallery__author {
           transform: translateY(0);
         }
 
-        & .gallery__play-video {
+        .gallery__play-video {
           opacity: 1;
+        }
+
+        .gallery__img {
+          transform: scale(1.1);
+          filter: brightness(0.6);
         }
       }
 
-      &:hover .gallery__img {
-        transform: scale(1.1);
-        filter: brightness(0.6);
-      }
     }
 
     &__img {

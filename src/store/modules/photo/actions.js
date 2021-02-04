@@ -1,11 +1,13 @@
 import axios from 'axios';
 
+const numberOfElements = 12;
+
 export default {
   // Getting curated photos that are displayed by default
   async GET_PHOTOS({commit}) {
     try {
       commit('SET_PRELOADER', null, {root: true});
-      const photoList = await axios.get(`https://api.pexels.com/v1/curated?page=1&per_page=12`, {
+      const photoList = await axios.get(`https://api.pexels.com/v1/curated?page=1&per_page=${numberOfElements}`, {
         headers: {
           Authorization: process.env.VUE_APP_API_KEY
         }
@@ -28,7 +30,7 @@ export default {
       commit('SET_PRELOADER', null, {root: true});
       // If the text field for entering a keyword/phrase is empty
       if (!getters.SEARCH_QUERY_PHOTOS) {
-        const morePhotoList = await axios.get(`https://api.pexels.com/v1/curated?page=${pageIndex}&per_page=12`, {
+        const morePhotoList = await axios.get(`https://api.pexels.com/v1/curated?page=${pageIndex}&per_page=${numberOfElements}`, {
           headers: {
             Authorization: process.env.VUE_APP_API_KEY
           }
@@ -38,7 +40,7 @@ export default {
       } else {
         // Otherwise, we work with the entered word/phrase
         const searchedPhotoList = await axios.get(
-          `https://api.pexels.com/v1/search?query=${getters.SEARCH_QUERY_PHOTOS}&page=${pageIndex}&per_page=12`,
+          `https://api.pexels.com/v1/search?query=${getters.SEARCH_QUERY_PHOTOS}&page=${pageIndex}&per_page=${numberOfElements}`,
           {
             headers: {
               Authorization: process.env.VUE_APP_API_KEY
@@ -64,7 +66,7 @@ export default {
       commit('SET_SEARCH_QUERY_PHOTOS', searchQuery);
       commit('SET_PRELOADER', null, {root: true});
       const searchedPhotoList = await axios.get(
-        `https://api.pexels.com/v1/search?query=${searchQuery}&page=1&per_page=12`,
+        `https://api.pexels.com/v1/search?query=${searchQuery}&page=1&per_page=${numberOfElements}`,
         {
           headers: {
             Authorization: process.env.VUE_APP_API_KEY

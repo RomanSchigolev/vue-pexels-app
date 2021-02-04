@@ -60,7 +60,7 @@
   .form {
     display: flex;
     margin-top: 2vmax;
-    max-width: 300px;
+    max-width: 70%;
 
     &__textfield {
       width: 100%;
@@ -68,7 +68,7 @@
       color: #b3b3b3;
       padding: 0 0.5vmax;
       margin-right: 1vmax;
-      font-size: 15px;
+      font-size: 1.55vmax;
       font-family: "Montserrat", sans-serif;
       font-weight: 400;
       transition: border-bottom-color 0.3s ease;
@@ -79,7 +79,7 @@
     }
 
     &__submit svg {
-      width: 18px;
+      width: 2.4vmax;
     }
   }
 </style>

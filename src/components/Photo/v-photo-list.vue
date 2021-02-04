@@ -1,8 +1,8 @@
 <template>
   <ul class="gallery__list">
     <vPhotoItem
-      v-for="photoItem in photoList"
-      :key="photoItem.id"
+      v-for="(photoItem, index) in photoList"
+      :key=index
       :photoItem="photoItem"
     />
   </ul>

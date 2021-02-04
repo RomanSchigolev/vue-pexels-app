@@ -21,12 +21,12 @@
 
   .pexels__link {
     display: block;
-    max-width: 90px;
+    max-width: 12vmax;
   }
 
   .pexels__img {
     display: block;
-    width: 90px;
+    width: 12vmax;
     height: auto;
   }
 </style>

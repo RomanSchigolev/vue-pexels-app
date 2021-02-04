@@ -1,8 +1,8 @@
 <template>
   <ul class="gallery__list">
     <vVideoItem
-      v-for="videoItem in videoList"
-      :key="videoItem.id"
+      v-for="(videoItem, index) in videoList"
+      :key=index
       :videoItem="videoItem"
     />
   </ul>

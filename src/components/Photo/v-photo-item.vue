@@ -47,17 +47,18 @@
       border-radius: 10px;
       transition: box-shadow 0.3s ease;
 
-      &:hover {
+      &:hover, &:focus-within {
         box-shadow: 0 0 5px 2px #645f5f;
 
-        & .gallery__author {
+        .gallery__author {
           transform: translateY(0);
+        }
+
+        .gallery__img {
+          transform: scale(1.1);
         }
       }
 
-      &:hover .gallery__img {
-        transform: scale(1.1);
-      }
     }
 
     &__img {
