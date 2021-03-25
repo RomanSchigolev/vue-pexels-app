@@ -1,3 +1,3 @@
 export default {
-  PRELOADER: (state) => state.preloader
+  PRELOADER: ({ preloader }) => preloader
 };

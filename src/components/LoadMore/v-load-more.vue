@@ -12,8 +12,6 @@
 </template>
 
 <script>
-  import {mapActions} from "vuex";
-
   export default {
     name: "v-load-more",
     props: {

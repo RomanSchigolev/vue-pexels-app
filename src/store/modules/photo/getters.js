@@ -1,5 +1,5 @@
 export default {
-  PHOTOS: (state) => state.photoList,
-  SEARCH_QUERY_PHOTOS: (state) => state.searchQueryPhoto,
-  ERROR_RESPONSE_PHOTOS: (state) => state.errorPhotos
+  PHOTOS: ({ photoList }) => photoList,
+  SEARCH_QUERY_PHOTOS: ({ searchQueryPhoto }) => searchQueryPhoto,
+  ERROR_RESPONSE_PHOTOS: ({ errorPhotos }) => errorPhotos
 };
